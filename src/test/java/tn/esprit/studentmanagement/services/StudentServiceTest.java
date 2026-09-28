@@ -1,4 +1,3 @@
-```java
 package tn.esprit.studentmanagement.services;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -50,18 +49,15 @@ class StudentServiceTest {
         assertEquals("Amira", result.get(0).getFirstName());
         verify(studentRepository, times(1)).findAll();
     }
+@Test
+void getAllStudents_sansEtudiant_retourneListeVide() {
+    when(studentRepository.findAll()).thenReturn(List.of());
 
-    @Test
-    void getAllStudents_sansEtudiant_retourneListeVide() {
-        when(studentRepository.findAll()).thenReturn(List.of());
+    List<Student> result = studentService.getAllStudents();
 
-        List<Student> result = studentService.getAllStudents();
-
-        // Modification volontaire pour provoquer un échec
-        assertEquals(1, result.size());
-
-        verify(studentRepository, times(1)).findAll();
-    }
+    assertEquals(0, result.size());
+    verify(studentRepository, times(1)).findAll();
+}
 
     @Test
     void getStudentById_existant_retourneLEtudiant() {
