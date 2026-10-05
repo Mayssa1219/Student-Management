@@ -82,7 +82,7 @@ void getAllStudents_sansEtudiant_retourneListeVide() {
 
         Student result = studentService.saveStudent(student);
 
-        assertEquals(1L, result.getIdStudent());
+        assertEquals(999L, result.getIdStudent());
         verify(studentRepository).save(student);
     }
 
